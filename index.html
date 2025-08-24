@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-symbol shield"></div>
+    <div class="bg-symbol eye"></div>
+    <div class="bg-symbol star"></div>
+    <div class="container">
+        <h2>Password Strength Checker</h2>
+        <div class="info">
+            <strong>How it works:</strong><br>
+            <span style="font-size:0.95em;">This tool checks your password strength based on length, uppercase, lowercase, numbers, and special characters.<br>
+            If your password is weak, you will receive suggestions to improve it.</span>
+            <br><br>
+            <a href="https://www.nist.gov/blogs/taking-measure/password-guidance-simple-complex" target="_blank" class="resource-link">Password Strength Resources</a>
+        </div>
+        <div class="input-section">
+            <label for="password" class="input-label">Enter Password:</label>
+            <input type="password" id="password" placeholder="Enter your password" />
+        </div>
+        <div id="strength" class="strength"></div>
+        <ul id="suggestion-list" class="suggestion-list" style="display:none;"></ul>
+    </div>
+    <script>
+        const passwordInput = document.getElementById('password');
+        const strengthDiv = document.getElementById('strength');
+        const suggestionList = document.getElementById('suggestion-list');
+        const inputLabel = document.querySelector('.input-label');
+        const resourceLink = document.querySelector('.resource-link');
+
+        // Mouse over effect for input label
+        passwordInput.addEventListener('mouseover', function() {
+            inputLabel.style.color = '#a259ff';
+            inputLabel.style.fontWeight = 'bold';
+        });
+        passwordInput.addEventListener('mouseout', function() {
+            inputLabel.style.color = '#fff';
+            inputLabel.style.fontWeight = 'normal';
+        });
+
+        // Mouse over effect for resource link
+        resourceLink.addEventListener('mouseover', function() {
+            resourceLink.style.textDecoration = 'underline';
+            resourceLink.style.color = '#27ae60';
+        });
+        resourceLink.addEventListener('mouseout', function() {
+            resourceLink.style.textDecoration = 'none';
+            resourceLink.style.color = '#a259ff';
+        });
+
+        passwordInput.addEventListener('input', function() {
+            const pwd = passwordInput.value;
+            const strength = checkStrength(pwd);
+            strengthDiv.textContent = `Strength: ${strength.label}`;
+            strengthDiv.className = `strength ${strength.class}`;
+
+            if(strength.label === 'Weak') {
+                suggestionList.style.display = 'block';
+                suggestionList.innerHTML = generateSuggestionList(pwd);
+            } else {
+                suggestionList.style.display = 'none';
+                suggestionList.innerHTML = '';
+            }
+        });
+
+        function checkStrength(password) {
+            let score = 0;
+            if(password.length >= 8) score++;
+            if(/[A-Z]/.test(password)) score++;
+            if(/[a-z]/.test(password)) score++;
+            if(/[0-9]/.test(password)) score++;
+            if(/[^A-Za-z0-9]/.test(password)) score++;
+
+            if(score <= 2) return {label: 'Weak', class: 'weak'};
+            if(score === 3 || score === 4) return {label: 'Medium', class: 'medium'};
+            if(score === 5) return {label: 'Strong', class: 'strong'};
+        }
+
+        function generateSuggestionList(password) {
+            let suggestions = [];
+            if(password.length < 8) suggestions.push('Use at least 8 characters.');
+            if(!/[A-Z]/.test(password)) suggestions.push('Add uppercase letters.');
+            if(!/[a-z]/.test(password)) suggestions.push('Add lowercase letters.');
+            if(!/[0-9]/.test(password)) suggestions.push('Include numbers.');
+            if(!/[^A-Za-z0-9]/.test(password)) suggestions.push('Include special characters.');
+            if(suggestions.length === 0) suggestions.push('Try a more unique password.');
+            return suggestions.map(s => `<li>${s}</li>`).join('');
+        }
+    </script>
+</body>
+</html>

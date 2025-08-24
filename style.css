@@ -1,0 +1,159 @@
+body {
+    background: #141414;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative symbols and images */
+body::before, body::after, body .bg-symbol {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+}
+body::before {
+    background: url('https://img.icons8.com/ios-filled/100/a259ff/lock--v1.png') no-repeat;
+    left: 3vw;
+    top: 8vh;
+    width: 100px;
+    height: 100px;
+    opacity: 0.10;
+}
+body::after {
+    background: url('https://img.icons8.com/ios-filled/100/a259ff/key.png') no-repeat;
+    right: 5vw;
+    bottom: 10vh;
+    width: 100px;
+    height: 100px;
+    opacity: 0.10;
+}
+.bg-symbol {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.12;
+}
+.bg-symbol.shield {
+    left: 50vw;
+    top: 5vh;
+    width: 80px;
+    height: 80px;
+    background: url('https://img.icons8.com/ios-filled/100/a259ff/security-shield-green.png') no-repeat;
+    background-size: contain;
+}
+.bg-symbol.eye {
+    left: 10vw;
+    bottom: 5vh;
+    width: 80px;
+    height: 80px;
+    background: url('https://img.icons8.com/ios-filled/100/a259ff/eye.png') no-repeat;
+    background-size: contain;
+}
+.bg-symbol.star {
+    right: 10vw;
+    top: 15vh;
+    width: 60px;
+    height: 60px;
+    background: url('https://img.icons8.com/ios-filled/100/a259ff/star.png') no-repeat;
+    background-size: contain;
+}
+
+.container {
+    background: rgba(20, 20, 20, 0.98);
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(162,89,255,0.18);
+    width: 90vw;
+    max-width: 600px;
+    min-width: 320px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+h2 {
+    color: #a259ff;
+    margin-bottom: 1.2rem;
+    letter-spacing: 1px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.info {
+    background: rgba(162,89,255,0.08);
+    color: #a259ff;
+    border-radius: 8px;
+    padding: 0.7rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.98rem;
+    box-shadow: 0 2px 8px rgba(162,89,255,0.08);
+}
+
+.input-section label {
+    color: #fff;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-align: left;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #a259ff;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    outline: none;
+    background: #232323;
+    color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+input[type="password"]:focus {
+    border-color: #a259ff;
+    box-shadow: 0 0 0 2px #a259ff44;
+}
+
+.strength {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.strength.weak {
+    color: #e74c3c;
+}
+.strength.medium {
+    color: #f1c40f;
+}
+.strength.strong {
+    color: #27ae60;
+}
+
+.suggestion-list {
+    background: #232323;
+    color: #fff;
+    border-radius: 8px;
+    padding: 0.75rem 1.2rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(162,89,255,0.08);
+    text-align: left;
+    list-style: disc inside;
+}
+
+.resource-link {
+    color: #a259ff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.resource-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
