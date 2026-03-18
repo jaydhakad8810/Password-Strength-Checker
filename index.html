@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Password Strength Checker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="card">
+        <h1 class="title">Password Strength Checker</h1>
+
+        <label class="field">
+          <span class="label-text">Enter password</span>
+          <div class="pw-row">
+            <input id="password" type="password" autocomplete="new-password" placeholder="Type a password…" />
+            <button id="toggle" class="icon-btn" aria-label="Show password"></button>
+          </div>
+        </label>
+
+        <div class="meter" aria-hidden>
+          <div id="meter-bar" class="meter-bar"></div>
+        </div>
+
+        <div id="strength-text" class="strength-text">Start typing to evaluate</div>
+
+        <div class="feedback">
+          <ul id="rules">
+            <li data-rule="length" class="muted">8+ characters</li>
+            <li data-rule="lower" class="muted">Lowercase letter</li>
+            <li data-rule="upper" class="muted">Uppercase letter</li>
+            <li data-rule="number" class="muted">Number</li>
+            <li data-rule="symbol" class="muted">Symbol (e.g. !@#)</li>
+          </ul>
+        </div>
+
+        <div id="warning" class="warning" role="status"></div>
+
+        <div class="actions">
+          <button id="generate" class="btn">Generate strong password</button>
+          <button id="save" class="btn btn-secondary">Save (store hash)</button>
+        </div>
+
+        <div class="note muted">This demo stores a salted SHA-256 hash of the password in localStorage (one-way) — not the raw password.</div>
+      </section>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
